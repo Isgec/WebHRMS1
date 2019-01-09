@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<configuration>
+	<configSections>
+		<sectionGroup name="system.web.extensions" type="System.Web.Configuration.SystemWebExtensionsSectionGroup, System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35">
+			<sectionGroup name="scripting" type="System.Web.Configuration.ScriptingSectionGroup, System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35">
+				<section name="scriptResourceHandler" type="System.Web.Configuration.ScriptingScriptResourceHandlerSection, System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" requirePermission="false" allowDefinition="MachineToApplication"/>
+				<sectionGroup name="webServices" type="System.Web.Configuration.ScriptingWebServicesSectionGroup, System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35">
+					<section name="jsonSerialization" type="System.Web.Configuration.ScriptingJsonSerializationSection, System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" requirePermission="false" allowDefinition="Everywhere"/>
+					<section name="profileService" type="System.Web.Configuration.ScriptingProfileServiceSection, System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" requirePermission="false" allowDefinition="MachineToApplication"/>
+					<section name="authenticationService" type="System.Web.Configuration.ScriptingAuthenticationServiceSection, System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" requirePermission="false" allowDefinition="MachineToApplication"/>
+					<section name="roleService" type="System.Web.Configuration.ScriptingRoleServiceSection, System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" requirePermission="false" allowDefinition="MachineToApplication"/>
+				</sectionGroup>
+			</sectionGroup>
+		</sectionGroup>
+	</configSections>
+	<appSettings>
+		<add key="PageNoProvider" value="True"/>
+		<add key="PageSizeProvider" value="True"/>
+		<add key="HRISEvents.wsWebHrAdm1" value="http://localhost/WebHrAdm1/App_Services/wsWebHrAdm1.asmx"/>
+		<add key="VPNConnectionString" value="server=192.9.200.172;User Id=mysqlUser;Password=isgec12345;Persist Security Info=True;database=ftp"/>
+	</appSettings>
+	<connectionStrings>
+		<remove name="AspNetDBConnection"/>
+		<add name="AspNetDBConnection" connectionString="Data Source=PERKS;Initial Catalog=IJTPerks;Integrated Security=False;User Instance=False;Persist Security Info=True;User ID=sa;Password=isgec12345" providerName="System.Data.SqlClient"/>
+		<add name="--AspNetDBConnection" connectionString="Data Source=.;Initial Catalog=IJTPerks;Integrated Security=True;User Instance=False" providerName="System.Data.SqlClient"/>
+	</connectionStrings>
+	<system.web>
+		<membership>
+			<providers>
+				<clear/>
+				<add name="AspNetSqlMembershipProvider" type="System.Web.Security.SqlMembershipProvider" connectionStringName="AspNetDBConnection" enablePasswordRetrieval="false" enablePasswordReset="true" requiresQuestionAndAnswer="false" applicationName="/" requiresUniqueEmail="false" passwordFormat="Hashed" maxInvalidPasswordAttempts="5" minRequiredPasswordLength="1" minRequiredNonalphanumericCharacters="0" passwordAttemptWindow="10" passwordStrengthRegularExpression=""/>
+			</providers>
+		</membership>
+		<roleManager enabled="true">
+			<providers>
+				<clear/>
+				<add connectionStringName="AspNetDBConnection" name="AspNetSqlRoleProvider" type="system.Web.Security.SqlRoleProvider"/>
+			</providers>
+		</roleManager>
+		<sessionState cookieless="UseDeviceProfile">
+		</sessionState>
+		<customErrors mode="RemoteOnly"/>
+		<identity impersonate="false"/>
+		<processModel enable="true" timeout="Infinite" idleTimeout="Infinite" shutdownTimeout="00:00:05" requestLimit="Infinite" requestQueueLimit="5000" restartQueueLimit="10" memoryLimit="60" webGarden="false" cpuMask="0xffffffff" userName="machine" password="AutoGenerate" logLevel="Errors" clientConnectedCheck="00:00:05" comAuthenticationLevel="Default" comImpersonationLevel="Impersonate" responseDeadlockInterval="00:03:00" responseRestartDeadlockInterval="00:03:00" autoConfig="true" maxWorkerThreads="20" maxIoThreads="20" minWorkerThreads="1" minIoThreads="1" serverErrorMessageFile="" pingFrequency="Infinite" pingTimeout="Infinite" maxAppDomains="2000"/>
+		<authentication mode="Forms">
+			<forms loginUrl="Login.aspx" protection="None" timeout="300"/>
+		</authentication>
+		<authorization>
+			<allow users="*"/>
+		</authorization>
+		<globalization culture="en-GB" uiCulture="en-GB" requestEncoding="utf-8" responseEncoding="utf-8"/>
+		<compilation debug="true" strict="false" explicit="true">
+			<assemblies>
+				<add assembly="System.Core, Version=3.5.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/>
+				<add assembly="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35"/>
+				<add assembly="System.Data.DataSetExtensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/>
+				<add assembly="System.Xml.Linq, Version=3.5.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/>
+				<add assembly="System.Data.Entity, Version=3.5.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/>
+				<add assembly="System.Data.Services, Version=3.5.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/>
+				<add assembly="System.Data.Services.Client, Version=3.5.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/>
+				<add assembly="ADODB, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
+				<add assembly="MySql.Data, Version=6.4.4.0, Culture=neutral, PublicKeyToken=C5687FC88969C44D"/></assemblies>
+		</compilation>
+		<pages styleSheetTheme="Default" maintainScrollPositionOnPostBack="true">
+			<namespaces>
+				<clear/>
+				<add namespace="System"/>
+				<add namespace="System.Collections"/>
+				<add namespace="System.Collections.Generic"/>
+				<add namespace="System.Collections.Specialized"/>
+				<add namespace="System.Configuration"/>
+				<add namespace="System.Text"/>
+				<add namespace="System.Text.RegularExpressions"/>
+				<add namespace="System.Linq"/>
+				<add namespace="System.Xml.Linq"/>
+				<add namespace="System.Web"/>
+				<add namespace="System.Web.Caching"/>
+				<add namespace="System.Web.SessionState"/>
+				<add namespace="System.Web.Security"/>
+				<add namespace="System.Web.Profile"/>
+				<add namespace="System.Web.UI"/>
+				<add namespace="System.Web.UI.WebControls"/>
+				<add namespace="System.Web.UI.WebControls.WebParts"/>
+				<add namespace="System.Web.UI.HtmlControls"/>
+			</namespaces>
+			<controls>
+				<add tagPrefix="asp" namespace="System.Web.UI" assembly="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35"/>
+				<add tagPrefix="asp" namespace="System.Web.UI.WebControls" assembly="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35"/>
+				<add tagPrefix="AJX" namespace="AjaxControlToolkit" assembly="AjaxControlToolkit"/>
+				<add tagPrefix="RGV" namespace="LavaBlast.AJAX.GridViewResizeExtender" assembly="GridViewResizeExtender"/>
+				<add tagPrefix="VWD" namespace="VwdCms" assembly="SplitterBar"/>
+				<add tagPrefix="LGM" tagName="LoginLine" src="~/Sys_Controls/Login0.ascx"/>
+				<add tagPrefix="LGM" tagName="LoginPage" src="~/Sys_Controls/Login1.ascx"/>
+				<add tagPrefix="LGM" tagName="ChangePass" src="~/Sys_Controls/Login2.ascx"/>
+				<add tagPrefix="LGM" tagName="ToolBar0" src="~/Sys_Controls/lgTbl.ascx"/>
+				<add tagPrefix="LGM" tagName="ToolBar" src="~/Sys_Controls/lgToolBar.ascx"/>
+				<add tagPrefix="LGM" tagName="Informations" src="~/Sys_Controls/Informations.ascx"/>
+				<add tagPrefix="LGM" tagName="LC_hrmCompanies" src="~/HRM_Main/APP_FKControls/LC_hrmCompanies.ascx"/>
+				<add tagPrefix="LGM" tagName="LC_hrmDivisions" src="~/HRM_Main/APP_FKControls/LC_hrmDivisions.ascx"/>
+				<add tagPrefix="LGM" tagName="LC_hrmOffices" src="~/HRM_Main/APP_FKControls/LC_hrmOffices.ascx"/>
+				<add tagPrefix="LGM" tagName="LC_hrmDepartments" src="~/HRM_Main/APP_FKControls/LC_hrmDepartments.ascx"/>
+				<add tagPrefix="LGM" tagName="LC_hrmDesignations" src="~/HRM_Main/APP_FKControls/LC_hrmDesignations.ascx"/>
+				<add tagPrefix="LGM" tagName="LC_hrmStatus" src="~/HRM_Main/APP_FKControls/LC_hrmStatus.ascx"/>
+				<add tagPrefix="LGM" tagName="LC_hrmJoiningStates" src="~/HRM_Main/APP_FKControls/LC_hrmJoiningStates.ascx"/>
+				<add tagPrefix="LGM" tagName="LC_hrmWorkingAreas" src="~/HRM_Main/APP_FKControls/LC_hrmWorkingAreas.ascx"/>
+				<add tagPrefix="LGM" tagName="LC_hrmQualifications" src="~/HRM_Main/APP_FKControls/LC_hrmQualifications.ascx"/>
+				<add tagPrefix="LGM" tagName="LC_hrmFunctionalStatus1" src="~/HRM_Main/APP_FKControls/LC_hrmFunctionalStatus1.ascx"/>
+				<add tagPrefix="LGM" tagName="LC_hrmFunctionalStatus2" src="~/HRM_Main/APP_FKControls/LC_hrmFunctionalStatus2.ascx"/>
+				<add tagPrefix="LGM" tagName="LC_hrmFunctionalStatus3" src="~/HRM_Main/APP_FKControls/LC_hrmFunctionalStatus3.ascx"/>
+				<add tagPrefix="LGM" tagName="LC_hrmFunctionalStatus4" src="~/HRM_Main/APP_FKControls/LC_hrmFunctionalStatus4.ascx"/>
+				<add tagPrefix="LGM" tagName="LC_hrmBloodGroups" src="~/HRM_Main/APP_FKControls/LC_hrmBloodGroups.ascx"/>
+				<add tagPrefix="LGM" tagName="LC_hrmRatings" src="~/HRM_Main/APP_FKControls/LC_hrmRatings.ascx"/>
+				<add tagPrefix="LGM" tagName="LC_hrmEmployees" src="~/HRM_Main/APP_FKControls/LC_hrmEmployees.ascx"/>
+				<add tagPrefix="LGM" tagName="LC_hrmProjects" src="~/HRM_Main/APP_FKControls/LC_hrmProjects.ascx"/>
+				<add tagPrefix="LGM" tagName="LC_hrmServeys" src="~/HRM_Main/APP_FKControls/LC_hrmServeys.ascx"/>
+				<add tagPrefix="LGM" tagName="LC_hrmServeySheets" src="~/HRM_Main/APP_FKControls/LC_hrmServeySheets.ascx"/>
+				<add tagPrefix="LGM" tagName="LC_hrmServeyQuestions" src="~/HRM_Main/APP_FKControls/LC_hrmServeyQuestions.ascx"/>
+				<add tagPrefix="LGM" tagName="LC_hrmServeyThemes" src="~/HRM_Main/APP_FKControls/LC_hrmServeyThemes.ascx"/>
+			</controls>
+		</pages>
+		<httpHandlers>
+			<remove verb="*" path="*.asmx"/>
+			<add verb="*" path="*.asmx" validate="false" type="System.Web.Script.Services.ScriptHandlerFactory, System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35"/>
+			<add verb="*" path="*_AppService.axd" validate="false" type="System.Web.Script.Services.ScriptHandlerFactory, System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35"/>
+			<add verb="GET,HEAD" path="ScriptResource.axd" type="System.Web.Handlers.ScriptResourceHandler, System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" validate="false"/>
+			<add verb="GET,HEAD,DEBUG" path="*.rptx" type="SIS.SYS.Utilities.rptxHandler"/>
+		</httpHandlers>
+		<httpModules>
+			<add name="ScriptModule" type="System.Web.Handlers.ScriptModule, System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35"/>
+		</httpModules>
+	</system.web>
+	<system.codedom>
+		<compilers>
+			<compiler language="c#;cs;csharp" extension=".cs" warningLevel="4" type="Microsoft.CSharp.CSharpCodeProvider, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+				<providerOption name="CompilerVersion" value="v3.5"/>
+				<providerOption name="WarnAsError" value="false"/>
+			</compiler>
+			<compiler language="vb;vbs;visualbasic;vbscript" extension=".vb" warningLevel="4" type="Microsoft.VisualBasic.VBCodeProvider, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+				<providerOption name="CompilerVersion" value="v3.5"/>
+				<providerOption name="OptionInfer" value="true"/>
+				<providerOption name="WarnAsError" value="false"/>
+			</compiler>
+		</compilers>
+	</system.codedom>
+	<system.webServer>
+		<validation validateIntegratedModeConfiguration="false"/>
+		<modules>
+			<remove name="ScriptModule"/>
+			<add name="ScriptModule" preCondition="managedHandler" type="System.Web.Handlers.ScriptModule, System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35"/>
+		</modules>
+		<handlers>
+			<remove name="WebServiceHandlerFactory-Integrated"/>
+			<remove name="ScriptHandlerFactory"/>
+			<remove name="ScriptHandlerFactoryAppServices"/>
+			<remove name="ScriptResource"/>
+			<add name="ScriptHandlerFactory" verb="*" path="*.asmx" preCondition="integratedMode" type="System.Web.Script.Services.ScriptHandlerFactory, System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35"/>
+			<add name="ScriptHandlerFactoryAppServices" verb="*" path="*_AppService.axd" preCondition="integratedMode" type="System.Web.Script.Services.ScriptHandlerFactory, System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35"/>
+			<add name="ScriptResource" preCondition="integratedMode" verb="GET,HEAD" path="ScriptResource.axd" type="System.Web.Handlers.ScriptResourceHandler, System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35"/>
+		</handlers>
+	</system.webServer>
+	<runtime>
+		<assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+			<dependentAssembly>
+				<assemblyIdentity name="System.Web.Extensions" publicKeyToken="31bf3856ad364e35"/>
+				<bindingRedirect oldVersion="1.0.0.0-1.1.0.0" newVersion="3.5.0.0"/>
+			</dependentAssembly>
+			<dependentAssembly>
+				<assemblyIdentity name="System.Web.Extensions.Design" publicKeyToken="31bf3856ad364e35"/>
+				<bindingRedirect oldVersion="1.0.0.0-1.1.0.0" newVersion="3.5.0.0"/>
+			</dependentAssembly>
+		</assemblyBinding>
+	</runtime>
+	<system.serviceModel>
+		<serviceHostingEnvironment aspNetCompatibilityEnabled="true"/>
+	</system.serviceModel>
+</configuration>
