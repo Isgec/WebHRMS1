@@ -9,12 +9,12 @@ Namespace SIS.SYS.SQLDatabase
   Partial Public Class DBCommon
     Implements IDisposable
     Private Shared ReadOnly _conString As String = ""
-    Private Shared ReadOnly _banTAString As String = "Data Source=192.9.200.129;Initial Catalog=inforerpdb;Integrated Security=False;User Instance=False;Persist Security Info=True;User ID=lalit;Password=scorpions"
+    Private Shared ReadOnly _banTAString As String = "Data Source=ganesha;Initial Catalog=inforerpdb;Integrated Security=False;User Instance=False;Persist Security Info=True;User ID=lalit;Password=scorpions"
     'Private Shared ReadOnly _banString As String = "Data Source=192.9.200.44;Initial Catalog=inforerpdb;Integrated Security=False;User Instance=False;Persist Security Info=True;User ID=lalit;Password=scorpions"
-    Private Shared ReadOnly _banString As String = "Data Source=192.9.200.129;Initial Catalog=inforerpdb;Integrated Security=False;User Instance=False;Persist Security Info=True;User ID=lalit;Password=scorpions"
+    Private Shared ReadOnly _banString As String = "Data Source=ganesha;Initial Catalog=inforerpdb;Integrated Security=False;User Instance=False;Persist Security Info=True;User ID=lalit;Password=scorpions"
     Private Shared Property hostname As String = ""
     Public Shared Function GetWebPayConnectionString() As String
-      Return "Data Source=192.9.200.169;Initial Catalog=ISGEC;Integrated Security=False;User Instance=False;Persist Security Info=True;User ID=sa;Password=Webpay@2013"
+      Return "Data Source=hrms;Initial Catalog=ISGEC;Integrated Security=False;User Instance=False;Persist Security Info=True;User ID=sa;Password=Webpay@2013"
     End Function
     Public Shared Function GetBaaNConnectionString() As String
       Return _banString

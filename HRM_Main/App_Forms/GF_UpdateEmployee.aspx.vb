@@ -149,9 +149,11 @@ Partial Class GF_UpdateEmployee
               End If
             End If
             x.TAVerifier = wsD.Cells(I, 15).Text
-            If Not Employee(x.TAVerifier) Then
-              IsError = True
-              ErrMsg.Add("Line No." & I & " TA Verifier ID Not Found.")
+            If x.TAVerifier <> "" Then
+              If Not Employee(x.TAVerifier) Then
+                IsError = True
+                ErrMsg.Add("Line No." & I & " TA Verifier ID Not Found.")
+              End If
             End If
             x.TAApprover = wsD.Cells(I, 16).Text
             If Not Employee(x.TAApprover) Then
